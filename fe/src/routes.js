@@ -25,6 +25,8 @@ import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 import Language from "@material-ui/icons/Language";
 // core components/views for Admin layout
+import LoginPage from "views/Login/Login.js";
+import RegisterPage from "views/Register/Register.js";
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
 import TableList from "views/TableList/TableList.js";
@@ -36,7 +38,23 @@ import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.js";
 // core components/views for RTL layout
 import RTLPage from "views/RTLPage/RTLPage.js";
 
-const dashboardRoutes = [
+const routes = [
+  {
+    path: "/login",
+    name: "Login",
+    rtlName: "",
+    icon: undefined,
+    component: LoginPage,
+    layout: "/welcome"
+  },
+  {
+    path: "/register",
+    name: "Regsiter",
+    rtlName: "",
+    icon: undefined,
+    component: RegisterPage,
+    layout: "/welcome"
+  },
   {
     path: "/dashboard",
     name: "Dashboard",
@@ -111,4 +129,4 @@ const dashboardRoutes = [
   }
 ];
 
-export default dashboardRoutes;
+export default routes;
