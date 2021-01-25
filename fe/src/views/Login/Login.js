@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -34,7 +35,7 @@ import { bugs, website, server } from "variables/general.js";
 import RegularButton from "components/CustomButtons/Button.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 
- 
+ import { loginUser } from '../../redux/actions/authActionCreators'
 
 import {
   dailySalesChart,
@@ -43,43 +44,64 @@ import {
 } from "variables/charts.js";
 
 import "assets/css/material-login-react.css"
+import { connect } from "react-redux";
 
 // const useStyles = makeStyles(styles);
 
 
-export default function Login() {
+function Login( { dispatchLoginAction } ) {
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    
+    dispatchLoginAction(username, password,
+      // eslint-disable-next-line no-restricted-globals
+      () => {location.reload()}, () => 'Login failed'
+      )
+  }
+
   return (
     <div class="main-wrapper">
       <h1 class="login-title">
         Welcome
       </h1>
-      <div class="inputs-wrapper">
-            <CustomInput
-            labelText="Username"
-            id="username"
-            formControlProps={{
-              fullWidth: true
-            }}>
-            </CustomInput>
-            <CustomInput
-            labelText="Password"
-            id="Password"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              type: "password",
-            }}
-            >
-            </CustomInput>
-      </div>
-      <div class="buttons-wrapper">
-        <RegularButton block={false} round={false} color="info">Login</RegularButton>
-        <Link to={'/Welcome/Register'}>
-
-          <RegularButton block={false} round={false} simple={true} color="info">Register</RegularButton>
-        </Link>
-      </div>
+      <form noValidate onSubmit={handleOnSubmit}>
+        <div class="inputs-wrapper">
+              <CustomInput
+              labelText="Username"
+              id="username"
+              formControlProps={{
+                fullWidth: true
+              }}
+              inputProps={{
+                value: username,
+                onChange: (e) => setUsername(e.target.value)
+              }}>
+              </CustomInput>
+              <CustomInput
+              labelText="Password"
+              id="Password"
+              formControlProps={{
+                fullWidth: true
+              }}
+              inputProps={{
+                type: "password",
+                value: password,
+                onChange: (e) => setPassword(e.target.value)
+              }}
+              >
+              </CustomInput>
+        </div>
+        <div class="buttons-wrapper">
+          <RegularButton type="submit" block={false} round={false} color="info">Login</RegularButton>
+          <Link to={'/Welcome/Register'}>
+            <RegularButton block={false} round={false} simple={true} color="info">Register</RegularButton>
+          </Link>
+        </div>
+      </form>
       
 
       <div class="login-bg"></div>
@@ -87,51 +109,8 @@ export default function Login() {
     </div>
   );
 }
-
-// const {
-//   formControlProps,
-//   labelText,
-//   id,
-//   labelProps,
-//   inputProps,
-//   error,
-//   success
-// } = props;
-
-
-
-
-// RegularButton.propTypes = {
-//   color
-  
-  
-// //   "primary",
-// //     "info",
-// //     "success",
-// //     "warning",
-// //     "danger",
-// //     "rose",
-// //     "white",
-// //     "transparent"
-// //   ]),
-// //   size: PropTypes.oneOf(["sm", "lg"]),
-// //   simple: PropTypes.bool,
-// //   round: PropTypes.bool,
-// //   disabled: PropTypes.bool,
-// //   block: PropTypes.bool,
-// //   link: PropTypes.bool,
-// //   justIcon: PropTypes.bool,
-// //   className: PropTypes.string,
-// //   // use this to pass the classes props from Material-UI
-// //   muiClasses: PropTypes.object,
-// //   children: PropTypes.node
-// // };
-      // // //   "primary",
-// //     "info",
-// //     "success",
-// //     "warning",
-// //     "danger",
-// //     "rose",
-// //     "white",
-// //     "transparent"
-
+const mapDispatchToProps = dispatch => ({
+  dispatchLoginAction: (username, password, onSuccess, orError) =>
+    dispatch(loginUser({ username, password }, onSuccess, orError))
+});
+export default connect(null, mapDispatchToProps)(Login)

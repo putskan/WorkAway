@@ -45,16 +45,15 @@ router.post('/login', async (req, res) => {
     const error_msg = loginValidation(req.body);
     if (error_msg) return res.status(400).send(error_msg);
    
-    const userDocument = await User.findOne({username: req.body.username});
-    if (!userDocument) return res.status(400).send('Username or password are incorrect');
+    const user = await User.findOne({username: req.body.username});
+    if (!user) return res.status(400).send('Username or password are incorrect');
 
-    if (!await bcrypt.compare(req.body.password, userDocument.password)) {
+    if (!await bcrypt.compare(req.body.password, user.password)) {
         return res.status(400).send('Username or password are incorrect!');
     }
-    const token = jwt.sign({_id: userDocument._id}, process.env.JWT_SECRET)
-    res.header('auth-token', token).send(token);
-    return res.status(200).send('success');
-    
+    const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
+    res.header('auth-token', token);
+    return res.status(200).send({user: user._id});
 });
 
 module.exports = router;

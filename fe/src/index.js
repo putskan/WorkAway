@@ -19,24 +19,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-
-// core components
-import Admin from "layouts/Admin.js";
-import Welcome from "layouts/Welcome.js";
-import RTL from "layouts/RTL.js";
+import { Provider, connect } from 'react-redux';
 
 import "assets/css/material-dashboard-react.css?v=1.8.0";
+import configureStore from './redux/configureStore';
+import ReduxSwitch from './redux/reduxSwitch'
 
+
+const store = configureStore()
 const hist = createBrowserHistory();
 
 ReactDOM.render(
-  <Router history={hist}>
-    <Switch>
-      <Route path="/admin" component={Admin} />
-      <Route path="/welcome" component={Welcome} />
-      <Route path="/rtl" component={RTL} />
-      <Redirect from="/" to="/welcome/login" />
-    </Switch>
-  </Router>,
+  <Provider store={store}>
+      <Router history={hist}>
+        <ReduxSwitch>
+        </ReduxSwitch>
+      </Router>
+  </Provider>,
   document.getElementById("root")
 );
+

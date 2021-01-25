@@ -3,7 +3,7 @@ const app = express()
 const authRoute = require('./routes/auth');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-
+const cors = require('cors')
 
 async function dbConnect() {
     try {
@@ -18,6 +18,8 @@ dotenv.config()
 dbConnect();
 // add post recieval functionallity
 app.use(express.json());
+app.use(cors())
+
 // routes
 app.use('/api/user', authRoute);
 
