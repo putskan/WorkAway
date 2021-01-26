@@ -65,13 +65,14 @@ function Register({ dispatchRegisterAction }) {
   const [country, setCountry] = useState('');
   const [postalCode, setPostalCode] = useState('');
   const [aboutMe, setAboutMe] = useState('');
+  const [registerErrorMsg, setRegisterErrorMsg] = useState('');
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
     dispatchRegisterAction(company, username, password, email, firstName, lastName, city, country, postalCode, aboutMe,
       // eslint-disable-next-line no-restricted-globals
-      () => {location.reload()}, () => 'Login failed',
-      (msg) => console.log('error on register')
+      () => location.reload(),
+      (errMsg) => setRegisterErrorMsg(errMsg)
       );
   }
 
@@ -231,10 +232,8 @@ function Register({ dispatchRegisterAction }) {
               </div>
             </form>
           </div>
-      
-
+          <h4>{registerErrorMsg}</h4>
       <div class="register-bg"></div>
-
     </div>
   );
 }

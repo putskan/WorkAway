@@ -14,10 +14,12 @@ export const apiMiddleware = ({ dispatch, getState }) => next => action => {
         if (success) dispatch(success(response.data));
         if (postProcessSuccess) postProcessSuccess(response.data);
     }).catch(err => {
-        if (!err.reponse) console.warn(err);
-        else{
-            if (err.response.data.error.message) {
-                if(postProcessError) postProcessError(err.response.data.error.message);
+        console.log(Object.keys(err));
+        console.log(err.response)
+        if (!err.response) console.warn(err);
+        else {
+            if (err.response.data) {
+                if(postProcessError) postProcessError(err.response.data);
             }
         }
     })

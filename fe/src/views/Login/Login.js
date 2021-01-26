@@ -53,14 +53,16 @@ function Login( { dispatchLoginAction } ) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loginErrorMsg, setLoginErrorMsg] = useState('');
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
     
     dispatchLoginAction(username, password,
       // eslint-disable-next-line no-restricted-globals
-      () => {location.reload()}, () => 'Login failed'
-      )
+      () => console.log('location.reload()'), 
+      (errMsg) => setLoginErrorMsg(errMsg)
+      ) 
   }
 
   return (
@@ -102,10 +104,8 @@ function Login( { dispatchLoginAction } ) {
           </Link>
         </div>
       </form>
-      
-
+      <h4>{loginErrorMsg}</h4>
       <div class="login-bg"></div>
-
     </div>
   );
 }
