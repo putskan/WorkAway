@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const authRoute = require('./routes/auth');
+const dataRoute = require('./routes/data');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors')
@@ -22,5 +23,6 @@ app.use(cors())
 
 // routes
 app.use('/api/user', authRoute);
+app.use('/api/data', dataRoute);
 
 app.listen(9000, () => console.log('UP!'));
