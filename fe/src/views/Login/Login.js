@@ -60,7 +60,7 @@ function Login( { dispatchLoginAction } ) {
     
     dispatchLoginAction(username, password,
       // eslint-disable-next-line no-restricted-globals
-      () => console.log('location.reload()'), 
+      () => location.reload(), 
       (errMsg) => setLoginErrorMsg(errMsg)
       ) 
   }
