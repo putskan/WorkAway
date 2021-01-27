@@ -14,7 +14,6 @@ async function dbConnect() {
       }
 }
 
-
 dotenv.config()
 dbConnect();
 // add post recieval functionallity

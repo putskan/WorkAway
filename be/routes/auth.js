@@ -7,14 +7,11 @@ const jwt = require('jsonwebtoken');
 router.post('/register', async (req, res) => {
     const error_msg = registerValidation(req.body);
     if (error_msg) return res.status(400).send(error_msg);
-
     const emailQueryResult = await User.findOne({email: req.body.email})
-    if (emailQueryResult) return res.status(400).send('Email Already Taken');
-    
+    if (emailQueryResult) return res.status(400).send('Email Already Taken');    
     const usernameResult = await User.findOne({username: req.body.username})
     if (usernameResult) return res.status(400).send('Username Already Taken');
-
-
+    // hash password
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.password, salt);
 

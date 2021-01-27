@@ -1,12 +1,12 @@
-* {
-  color: white !important;
-}
-
 .main-wrapper {
   box-sizing: border-box;
   position: relative;
   min-height: 100vh;
   padding-top: 70px;
+}
+
+.main-wrapper * {
+  color: white !important;
 }
 .register-bg {
   background-image: url('../img/cover.jpeg');

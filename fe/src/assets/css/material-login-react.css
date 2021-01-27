@@ -58,10 +58,17 @@
 .buttons-wrapper {
   padding-top: 35px;
 }
+
 .buttons-wrapper button {
   transform: scale(0.95);
 }
 
-form {
+.form {
   padding-bottom: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-title {
+    font-size: 60px;
+  }
 }

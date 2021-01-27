@@ -18,8 +18,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
-import { Provider, connect } from 'react-redux';
+import { Router } from "react-router-dom";
+import { Provider } from 'react-redux';
 import "assets/css/material-dashboard-react.css?v=1.8.0";
 import configureStore from './redux/configureStore';
 import ReduxSwitch from './redux/reduxSwitch'

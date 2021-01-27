@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { useAsync } from "react-async"
 import axios from 'axios'
-// @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
-// core components
 import { serverBaseUrl } from '../../variables/network'
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -38,49 +35,8 @@ const styles = {
 const useStyles = makeStyles(styles);
 
 
-
-
-// const fetchUserInfo = async () => {
-//   console.log('fetching')
-//   const token = JSON.parse(localStorage.getItem('USER_INFO')).token;
-//   try {
-//     console.log('try1')
-//     let res = await axios({
-//         url: serverBaseUrl + '/api/data/userinfo',
-//         method: 'GET',
-//         headers: {  
-//           'token': token
-//         }
-//     });
-//     console.log('try2')
-//     if(res.status == 200){
-//       console.log('resdata');
-//       console.log(res.data);
-//     }
-//     return res.data;
-//   }
-//   catch (err) {
-//     console.error(err);
-//   }
-// }
-  
-
-
-
 export default function UserProfile() {
   const classes = useStyles();
-  // const { userInfo, error, isPending } = useAsync({ promiseFn: fetchUserInfo })
-  // const [company, setCompany] = useState(userInfo ? userInfo.company : 'comp1');
-  // const [username, setUsername] = useState(userInfo ? userInfo.username : 'useruser');
-  // const [password, setPassword] = useState('pass');
-  // const [email, setEmail] = useState(userInfo ? userInfo.email : 'mail@gmnail.');
-  // const [firstName, setFirstName] = useState(userInfo ? userInfo.email : 'ben');
-  // const [lastName, setLastName] = useState(userInfo ? userInfo.lastName : 'la');
-  // const [city, setCity] = useState(userInfo ? userInfo.city : 'ko');
-  // const [country, setCountry] = useState(userInfo ? userInfo.country : 'israel');
-  // const [postalCode, setPostalCode] = useState(userInfo ? userInfo.postalCode : '0504');
-  // const [aboutMe, setAboutMe] = useState(userInfo ? userInfo.aboutMe : '665465');
-  // const [updateErrorMsg, setUpdateErrorMsg] = useState(userInfo ? userInfo.updateErrorMsg : 'dasdaasd');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -90,12 +46,7 @@ export default function UserProfile() {
   const [postalCode, setPostalCode] = useState('');
   const [aboutMe, setAboutMe] = useState('');
   const [responseMsg, setResponseMsg] = useState('');
-  // console.log(isPending);
-  // console.log(error);
-  // console.log(userInfo);
-  // if (isPending) return "Loading..."
-  // if (error) return `Something went wrong: ${error.message}`
-  // else {
+
   const handleOnSubmit = (event) => {
     event.preventDefault();
     setUserInfo({username: username, email: email, firstName: firstName,
@@ -105,12 +56,9 @@ export default function UserProfile() {
   }
 
   const setUserInfo = async (userData) => {
-    console.log('setting info...')
     let res;
     const token = JSON.parse(localStorage.getItem('USER_INFO')).token;
-    console.log('setting info...2')
     try {
-          console.log('setting info...3')
           res = await axios({
           url: serverBaseUrl + '/api/data/setUserInfo',
           method: 'POST',
@@ -124,7 +72,7 @@ export default function UserProfile() {
       }
     }
     catch (err) {
-      return setResponseMsg(err.hasOwnProperty('response') ? err.response.data: 'Error. Please try again later');
+      return setResponseMsg(err.hasOwnProperty('response') && err.response.hasOwnProperty('data') ? err.response.data: 'Error. Please try again later');
     }
   }
 
@@ -248,7 +196,7 @@ export default function UserProfile() {
                       />
                     </GridItem>
                   </GridContainer>
-                  <GridContainer>
+                  <GridContainer style={{ "padding-top": "55px" }}>
                     <GridItem xs={12} sm={12} md={12}>
                       <InputLabel style={{ color: "#AAAAAA" }}>About me</InputLabel>
                       <CustomInput
@@ -259,7 +207,7 @@ export default function UserProfile() {
                         }}
                         inputProps={{
                           multiline: true,
-                          rows: 5,
+                          rows: 3,
                           value: aboutMe,
                           onChange: (e) => setAboutMe(e.target.value)
                         }}

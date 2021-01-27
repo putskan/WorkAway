@@ -36,8 +36,9 @@ const loginValidation = (input) => {
     return '';
 }
 
+
 const setUserInfoValidation = (input) => {
-    // validate registration input. return the error msg, empty string if no validation error.
+    // validate setUserInfo request input. return the error msg, empty string if no validation error.
     const schema = Joi.object().keys({
         username: Joi.string().min(6).required(),
         email: Joi.string().required().email(),
