@@ -42,10 +42,10 @@ router.post('/login', async (req, res) => {
     if (error_msg) return res.status(400).send(error_msg);
    
     const user = await User.findOne({username: req.body.username});
-    if (!user) return res.status(400).send('Username or password are incorrect');
+    if (!user) return res.status(400).send('Username or password are incorrect.');
 
     if (!await bcrypt.compare(req.body.password, user.password)) {
-        return res.status(400).send('Username or password are incorrect!');
+        return res.status(400).send('Username or password are incorrect.');
     }
     const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
     // res.header('auth-token', token);
