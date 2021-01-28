@@ -1,0 +1,74 @@
+.main-wrapper {
+  box-sizing: border-box;
+  position: relative;
+  min-height: 100vh;
+  padding-top: 70px;
+}
+.login-bg {
+  background-image: url('../img/sidebar-2.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.login-bg:after {
+  content: '';
+  background-color: black;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  animation-name: darken-bg;
+  animation-fill-mode: forwards;
+  animation-duration: 3s;
+  z-index: -1;
+}
+
+@keyframes darken-bg {
+  0% { opacity: 0; }
+  100% { opacity: 0.6; }
+}
+
+.main-wrapper * {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-title {
+  margin: 0;
+  font-size: 100px;
+  color: white;
+}
+
+.inputs-wrapper {
+  max-width: 200px;
+}
+
+.inputs-wrapper input {
+  width: 200px;
+  color: white;
+}
+
+.buttons-wrapper {
+  padding-top: 35px;
+}
+
+.buttons-wrapper button {
+  transform: scale(0.95);
+}
+
+.form {
+  padding-bottom: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-title {
+    font-size: 60px;
+  }
+}
