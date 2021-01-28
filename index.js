@@ -5,6 +5,8 @@ const dataRoute = require('./routes/data');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors')
+const path = require('path');
+
 
 async function dbConnect() {
     try {
@@ -24,8 +26,7 @@ app.use(cors())
 app.use('/api/user', authRoute);
 app.use('/api/data', dataRoute);
 
-// for production
-app.use(express.static('client/build'));
+// serve
+app.use(express.static(__dirname + '/client/build'));
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
-

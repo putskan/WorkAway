@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "./static/css/main.e7a13ebf.chunk.css",
+    "main.js": "./static/js/main.b2c2471a.chunk.js",
+    "main.js.map": "./static/js/main.b2c2471a.chunk.js.map",
+    "runtime~main.js": "./static/js/runtime~main.3451b984.js",
+    "runtime~main.js.map": "./static/js/runtime~main.3451b984.js.map",
+    "static/css/2.d0176e96.chunk.css": "./static/css/2.d0176e96.chunk.css",
+    "static/js/2.29400d07.chunk.js": "./static/js/2.29400d07.chunk.js",
+    "static/js/2.29400d07.chunk.js.map": "./static/js/2.29400d07.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.a0f71a29aea6dd82110d98b800b72ba0.js": "./precache-manifest.a0f71a29aea6dd82110d98b800b72ba0.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.d0176e96.chunk.css.map": "./static/css/2.d0176e96.chunk.css.map",
+    "static/css/main.e7a13ebf.chunk.css.map": "./static/css/main.e7a13ebf.chunk.css.map",
+    "static/media/material-register-react.css": "./static/media/cover.90bb3c7c.jpeg",
+    "static/media/marc.jpg": "./static/media/marc.8880a65c.jpg",
+    "static/media/sidebar-1.jpg": "./static/media/sidebar-1.8e9f0a3c.jpg",
+    "static/media/material-login-react.css": "./static/media/sidebar-2.310509c9.jpg",
+    "static/media/sidebar-3.jpg": "./static/media/sidebar-3.25031690.jpg",
+    "static/media/sidebar-4.jpg": "./static/media/sidebar-4.fc9cb053.jpg"
+  }
+}

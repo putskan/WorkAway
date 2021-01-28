@@ -1,6 +1,6 @@
-// const serverBaseUrl = 'http://localhost:9000';
-const serverBaseUrl = 'http://localhost:5000';
-  
+// const serverBaseUrl = 'http://localhost:5000';
+ const serverBaseUrl = 'https://workaway-proj.herokuapp.com';
+
 module.exports = {
-serverBaseUrl
+    serverBaseUrl
 };
