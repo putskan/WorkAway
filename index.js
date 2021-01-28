@@ -26,5 +26,10 @@ app.use('/api/data', dataRoute);
 
 // for production
 app.use(express.static(__dirname + '/client/build'));
-const PORT = process.env.PORT || 9000;
+// const path = require('path');
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+// });
+
+const PORT = app.get('port') //|| 9000;
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
